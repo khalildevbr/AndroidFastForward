@@ -9,14 +9,14 @@ public class Game {
     private static final int BOARD_SIZE = 3;
     public Player player1;
     public Player player2;
-    public Player currentPlayer = player1;
+    public final MutableLiveData<Player> winner = new MutableLiveData<>();
     public Cell[][] cells;
-    public MutableLiveData<Player> winner = new MutableLiveData<>();
+    public Player currentPlayer;
 
     public Game(String playerOne, String playerTwo) {
         cells = new Cell[BOARD_SIZE][BOARD_SIZE];
-        player1 = new Player(playerOne, "x");
-        player2 = new Player(playerTwo, "o");
+        player1 = new Player(playerOne, "X");
+        player2 = new Player(playerTwo, "O");
         currentPlayer = player1;
     }
 
@@ -40,7 +40,12 @@ public class Game {
                     return true;
             return false;
         } catch (NullPointerException e) {
-            Log.e(TAG, e.getMessage());
+            String message = e.getMessage();
+
+            if (message != null)
+                Log.e(TAG, message);
+
+            e.printStackTrace();
             return false;
         }
     }
@@ -52,7 +57,12 @@ public class Game {
                     return true;
             return false;
         } catch (NullPointerException e) {
-            Log.e(TAG, e.getMessage());
+            String message = e.getMessage();
+
+            if (message != null)
+                Log.e(TAG, message);
+
+            e.printStackTrace();
             return false;
         }
     }
@@ -62,7 +72,12 @@ public class Game {
             return areEqual(cells[0][0], cells[1][1], cells[2][2]) ||
                     areEqual(cells[0][2], cells[1][1], cells[2][0]);
         } catch (NullPointerException e) {
-            Log.e(TAG, e.getMessage());
+            String message = e.getMessage();
+
+            if (message != null)
+                Log.e(TAG, message);
+
+            e.printStackTrace();
             return false;
         }
     }

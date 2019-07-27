@@ -11,6 +11,7 @@ import dev.khalil.tictoe.utils.StringUtility.stringFromNumbers
 class GameViewModel : ViewModel() {
 
     lateinit var cells: ObservableArrayMap<String, String>
+
     private lateinit var game: Game
     val winner: LiveData<Player>
         get() = game.winner
